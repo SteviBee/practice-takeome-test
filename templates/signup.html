@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+{% block title %}Reg Portal {% endblock %}
+
+{% block content %}
+<h1>Yodlr Registration Portal</h1>
+
+<div class="col-6">
+  <h3>User</h3>
+  <form action="/signup/" method="POST">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input id="firstName"
+             class="form-control"
+             name="firstName"
+             placeholder="Stephen"
+      >
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input class="form-control"      
+             name="lastName"
+             type="text"
+             id="lastName">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input class="form-control"
+                name="email"
+                id="email"
+                type="email">
+    </div>
+    <button class="btn btn-primary">Add</button>
+  </form>
+</div>
+
+
+{% endblock %}

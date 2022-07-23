@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% block title %}Admin {% endblock %}
+
+{% block content %}
+<h1>Admin</h1>
+<div class="row justify-content-center">
+  <div class="col align-self-center">
+
+    <h2>Users</h2>
+    {% if data %}
+    {% for user in data %}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ user.state }}</h6>
+        <p class="card-text">S{{ user.email }}</p>
+      </div>
+      <form action="/delete/{{user.id}}" method="POST">
+        <div class="form-group">
+          <button class="btn btn-primary">Remove</button>
+        </div>
+      </form>
+    </div>
+    <!-- <ul>
+        <li><b>Name</b>{{ user.firstName }} {{ user.lastName }}</li>
+        <li><b>Email</b>{{ user.email }}</li>
+        <li><b>Status</b>{{ user.state }} </li>
+      </ul> -->
+    {% endfor %}
+    {% else %}
+    <p>None!</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

@@ -7,18 +7,39 @@ var bodyParser = require('body-parser');
 var logger = require('./lib/logger');
 var cors = require('cors');
 
+
+// Templating & routes changes added
+const nunjucks = require("nunjucks");
+
+const frontRoutes = require("./routes/front");
 var users = require('./routes/users');
 
 var app = express();
 var log = logger(app);
 
+// OG CODE --------------------------------
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(cors());
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// More templeting addtions
+nunjucks.configure("templates", {
+  autoescape: true,
+  express: app
+});
+
+app.set('view engine', 'html');
+
+
 
 app.use('/users', users);
+
+
+// Trying routes call - WNAT TO UNDO 7/22
+app.use(frontRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
